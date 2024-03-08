@@ -38,12 +38,12 @@ jobs:
           ./extractor.sh firmware.zip
           cd ${{ github.workspace }}
           touch info.md
-          echo "ROM Version: ${{ github.event.inputs.rom_versiom }}" >> info.md
+          echo "ROM Version: ${{ github.event.inputs.rom_ver }}" >> info.md
           echo "Submission date：$(TZ=Asia/Kolkata date '+%Y-%m-%d %H:%M:%S')" >> info.md
           echo "ROM Download direct link：${{ github.event.inputs.rom_url }}" >> info.md
           cd ~/Firmware_extractor/out
           if [ -f "init_boot.img" ]; then rm boot.img; fi
-          du -h --total *.img | sed 's/^/Extract image size： /' | head -n 1 >> ${{ github.workspace }}/info.md
+          du -h --total *.img | sed 's/^/Image size： /' | head -n 1 >> ${{ github.workspace }}/info.md
 
       - name: Upload images and related information
         uses: ncipollo/release-action@v1.12.0
